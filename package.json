@@ -1,0 +1,9 @@
+{
+  "name": "html5game",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "es6-shim": "^0.35.0",
+    "systemjs": "0.19.24"
+  }
+}
