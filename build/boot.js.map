@@ -1,1 +1,1 @@
-{"version":3,"file":"boot.js","sourceRoot":"","sources":["../game/boot.ts"],"names":[],"mappings":";;;;;;;;;;YACA,IAAI,WAAI,EAAE,CAAC"}
+{"version":3,"file":"boot.js","sourceRoot":"","sources":["../app/boot.ts"],"names":[],"mappings":";;;;;;;;;;YACA,IAAI,WAAI,EAAE,CAAC"}
