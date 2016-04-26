@@ -43,9 +43,9 @@ export class Loop {
 		let animation = this;
 
 		requestAnimationFrame(() => {
-			setTimeout(() => {
+			//setTimeout(() => {
 				animation.nextFrame();
-			}, 1000 / 60);
+			//}, 1000 / 60);
 		});
 	}
 

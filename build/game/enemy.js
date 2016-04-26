@@ -24,7 +24,7 @@ System.register(["../engine/keyboard", "../engine/spritesheet", "../engine/colis
                     this.context = context;
                     this.tag = 'ENEMY';
                     this.position = { "x": 0, "y": 0 };
-                    this.size = { "w": 20, "h": 20 };
+                    this.size = { "w": 30, "h": 25 };
                     this.velocity = 2;
                     this.andando = false;
                     this.direcao = DIREITA;
@@ -36,10 +36,11 @@ System.register(["../engine/keyboard", "../engine/spritesheet", "../engine/colis
                 Enemy.prototype.update = function () {
                     this.sheet.coluna = 0;
                     this.sheet.linha = 0;
-                    // Não chamo proximoQuadro!
                     this.andando = false;
                 };
                 Enemy.prototype.draw = function () {
+                    this.context.fillStyle = 'red';
+                    this.context.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
                     this.sheet.desenhar(this.position.x, this.position.y);
                 };
                 Enemy.prototype.getColiders = function () {

@@ -13,7 +13,7 @@ export class Enemy {
 	keyboard: Keyboard;
 	colission: Colission;
 	position = { "x": 0, "y": 0 };
-	size = { "w": 20, "h": 20 };
+	size = { "w": 30, "h": 25 };
 	velocity: number = 2;
 
 	sheet: any;
@@ -28,17 +28,14 @@ export class Enemy {
 	}
 
 	update () {
-
-
 			this.sheet.coluna = 0;
 			this.sheet.linha = 0;
-
-			// Não chamo proximoQuadro!
 			this.andando = false;
-
 	}
 
 	draw() {
+		this.context.fillStyle = 'red';
+		this.context.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
 		this.sheet.desenhar(this.position.x, this.position.y);
 	}
 

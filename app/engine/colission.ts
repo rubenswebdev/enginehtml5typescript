@@ -37,11 +37,11 @@ export class Colission {
 
 	public behaviorFixed(who, quem) {
 		if (who.direcao === 1) {
-			who.position.x = quem.position.x - quem.size.w;
+			who.position.x = quem.position.x - who.size.w;
 		} else if (who.direcao === -1) {
 			who.position.x = quem.position.x + quem.size.w;
 		} else if (who.direcao === -2) {
-			who.position.y = quem.position.y - quem.size.h;
+			who.position.y = quem.position.y - who.size.h;
 		} else if (who.direcao === 2) {
 			who.position.y = quem.position.y + quem.size.h;
 		}
@@ -51,11 +51,11 @@ export class Colission {
 		if (who.direcao === 1) {
 			quem.position.x = who.position.x + who.size.w;
 		} else if (who.direcao === -1) {
-			quem.position.x = who.position.x - who.size.w;
+			quem.position.x = who.position.x - quem.size.w;
 		} else if (who.direcao === -2) {
 			quem.position.y = who.position.y + who.size.h;
 		} else if (who.direcao === 2) {
-			quem.position.y = who.position.y - who.size.h;
+			quem.position.y = who.position.y - quem.size.h;
 		}
 	}
 }

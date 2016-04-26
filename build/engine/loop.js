@@ -40,9 +40,9 @@ System.register(["./colission"], function(exports_1, context_1) {
                     this.colission.process();
                     var animation = this;
                     requestAnimationFrame(function () {
-                        setTimeout(function () {
-                            animation.nextFrame();
-                        }, 1000 / 60);
+                        //setTimeout(() => {
+                        animation.nextFrame();
+                        //}, 1000 / 60);
                     });
                 };
                 Loop.prototype.clear = function () {

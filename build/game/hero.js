@@ -21,7 +21,7 @@ System.register(["../engine/keyboard", "../engine/spritesheet"], function(export
                     this.context = context;
                     this.tag = "HERO";
                     this.position = { "x": 0, "y": 0 };
-                    this.size = { "w": 22, "h": 45 };
+                    this.size = { "w": 25, "h": 45 };
                     this.velocity = 2;
                     this.andando = false;
                     this.direcao = DIREITA;
@@ -106,13 +106,11 @@ System.register(["../engine/keyboard", "../engine/spritesheet"], function(export
                     }
                 };
                 Hero.prototype.draw = function () {
+                    this.context.fillStyle = 'green';
+                    this.context.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
                     this.sheet.desenhar(this.position.x, this.position.y);
                 };
                 Hero.prototype.getColiders = function () {
-                    this.context.save();
-                    this.context.fillStyle = 'white';
-                    this.context.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
-                    this.context.restore();
                     return [{
                             x: this.position.x,
                             y: this.position.y,

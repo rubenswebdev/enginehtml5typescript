@@ -12,7 +12,7 @@ export class Hero {
 	tag: string = "HERO";
 	keyboard: Keyboard;
 	position = { "x": 0, "y": 0 };
-	size = { "w": 22, "h": 45 };
+	size = { "w": 25, "h": 45 };
 	velocity: number = 2;
 
 	sheet: any;
@@ -117,14 +117,12 @@ export class Hero {
 	}
 
 	draw() {
+		this.context.fillStyle = 'green';
+		this.context.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
 		this.sheet.desenhar(this.position.x, this.position.y);
 	}
 
 	getColiders() {
-		this.context.save();
-		this.context.fillStyle = 'white';
-		this.context.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
-		this.context.restore();
 		return [{
 			x: this.position.x,
 			y: this.position.y,
