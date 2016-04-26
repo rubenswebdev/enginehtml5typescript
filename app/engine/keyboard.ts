@@ -1,10 +1,18 @@
 export class Keyboard {
 	keysPressed: Array<any> = [];
 
-	constructor(private element: Document) {
+	private keys = {
+		"KEY_SHIFT": 16,
+		"KEY_ENTER": 13,
+		"KEY_LEFT": 37,
+		"KEY_UP": 38,
+		"KEY_RIGHT": 39,
+		"KEY_DOWN": 40,
+	}
+
+	constructor(private element: Document = document) {
 		this.element.addEventListener('keydown', (e) => {
 			this.keysPressed[e.keyCode] = true;
-			//console.log(keyCodes[e.keyCode]);
 		});
 
 		this.element.addEventListener('keyup', (e) => {
@@ -13,20 +21,20 @@ export class Keyboard {
 	}
 
 	pressed(key) {
-		return this.keysPressed[key];
+		return this.keysPressed[this.keys[key]];
 	}
-}
 
-var keys = {
-	"KEY_SHIFT": 16,
-	"KEY_ENTER": 13,
-	"KEY_LEFT": 37,
-	"KEY_UP": 38,
-	"KEY_RIGHT": 39,
-	"KEY_DOWN": 40,
-}
+	nonePressed() {
+		let retorno = true;
+		this.keysPressed.forEach((val, key) => {
+			if (val) {
+				retorno = false
+			}
+		});
+		return retorno;
+	}
 
-export { keys };
+}
 
 var keyCodes = {
 	3: "break",

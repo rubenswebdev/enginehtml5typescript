@@ -1,12 +1,22 @@
-export class Animation {
+import {Colission} from "./colission";
 
-	constructor(private context: CanvasRenderingContext2D) {}
+
+export class Loop {
+
+	colission: Colission;
+
+	constructor(private context: CanvasRenderingContext2D) {
+		this.colission = new Colission();
+	}
 
 	private sprites: Array<any> = [];
 	private started: boolean = false;
 
-	newSprite(sprite) {
+	newSprite(sprite, x, y) {
+		sprite.position.x = x;
+		sprite.position.y = y;
 		this.sprites.push(sprite);
+		this.colission.injectIn(sprite);
 	}
 
 	start() {
@@ -25,27 +35,21 @@ export class Animation {
 
 		this.sprites.forEach((sp) => {
 			sp.update();
-		});
-
-		this.sprites.forEach((sp) => {
 			sp.draw();
 		});
+
+		this.colission.process();
 
 		let animation = this;
 
 		requestAnimationFrame(() => {
 			setTimeout(() => {
 				animation.nextFrame();
-			}, 1000 / 30);
+			}, 1000 / 60);
 		});
 	}
 
 	clear() {
 		this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
 	}
-}
-
-export interface AnimationInterface {
-	draw();
-	update();
 }

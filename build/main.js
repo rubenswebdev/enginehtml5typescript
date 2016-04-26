@@ -1,24 +1,30 @@
-System.register(["./engine/animation", "./game/hero"], function(exports_1, context_1) {
+System.register(["./engine/loop", "./game/hero", "./game/enemy"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var animation_1, hero_1;
+    var loop_1, hero_1, enemy_1;
     var Main;
     return {
         setters:[
-            function (animation_1_1) {
-                animation_1 = animation_1_1;
+            function (loop_1_1) {
+                loop_1 = loop_1_1;
             },
             function (hero_1_1) {
                 hero_1 = hero_1_1;
+            },
+            function (enemy_1_1) {
+                enemy_1 = enemy_1_1;
             }],
         execute: function() {
             Main = (function () {
                 function Main() {
                     this.canvas = document.getElementById('canvas');
                     this.context = this.canvas.getContext('2d');
-                    var animation = new animation_1.Animation(this.context);
-                    animation.newSprite(new hero_1.Hero(this.context));
-                    animation.start();
+                    var loop = new loop_1.Loop(this.context);
+                    var hero = new hero_1.Hero(this.context);
+                    var enemy = new enemy_1.Enemy(this.context);
+                    loop.newSprite(hero, 100, 100);
+                    loop.newSprite(enemy, 200, 100);
+                    loop.start();
                 }
                 return Main;
             }());

@@ -1,27 +1,35 @@
-System.register([], function(exports_1, context_1) {
+System.register(["./colission"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Animation;
+    var colission_1;
+    var Loop;
     return {
-        setters:[],
+        setters:[
+            function (colission_1_1) {
+                colission_1 = colission_1_1;
+            }],
         execute: function() {
-            Animation = (function () {
-                function Animation(context) {
+            Loop = (function () {
+                function Loop(context) {
                     this.context = context;
                     this.sprites = [];
                     this.started = false;
+                    this.colission = new colission_1.Colission();
                 }
-                Animation.prototype.newSprite = function (sprite) {
-                    this.sprites.push(new sprite(this.context));
+                Loop.prototype.newSprite = function (sprite, x, y) {
+                    sprite.position.x = x;
+                    sprite.position.y = y;
+                    this.sprites.push(sprite);
+                    this.colission.injectIn(sprite);
                 };
-                Animation.prototype.start = function () {
+                Loop.prototype.start = function () {
                     this.started = true;
                     this.nextFrame();
                 };
-                Animation.prototype.stop = function () {
+                Loop.prototype.stop = function () {
                     this.started = false;
                 };
-                Animation.prototype.nextFrame = function () {
+                Loop.prototype.nextFrame = function () {
                     if (!this.started)
                         return;
                     this.clear();
@@ -29,20 +37,21 @@ System.register([], function(exports_1, context_1) {
                         sp.update();
                         sp.draw();
                     });
+                    this.colission.process();
                     var animation = this;
                     requestAnimationFrame(function () {
                         setTimeout(function () {
                             animation.nextFrame();
-                        }, 1000 / 30);
+                        }, 1000 / 60);
                     });
                 };
-                Animation.prototype.clear = function () {
+                Loop.prototype.clear = function () {
                     this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
                 };
-                return Animation;
+                return Loop;
             }());
-            exports_1("Animation", Animation);
+            exports_1("Loop", Loop);
         }
     }
 });
-//# sourceMappingURL=animation.js.map
+//# sourceMappingURL=loop.js.map

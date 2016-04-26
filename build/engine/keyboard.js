@@ -1,38 +1,46 @@
 System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Keyboard, keys, keyCodes;
+    var Keyboard, keyCodes;
     return {
         setters:[],
         execute: function() {
             Keyboard = (function () {
                 function Keyboard(element) {
                     var _this = this;
+                    if (element === void 0) { element = document; }
                     this.element = element;
                     this.keysPressed = [];
+                    this.keys = {
+                        "KEY_SHIFT": 16,
+                        "KEY_ENTER": 13,
+                        "KEY_LEFT": 37,
+                        "KEY_UP": 38,
+                        "KEY_RIGHT": 39,
+                        "KEY_DOWN": 40,
+                    };
                     this.element.addEventListener('keydown', function (e) {
                         _this.keysPressed[e.keyCode] = true;
-                        //console.log(keyCodes[e.keyCode]);
                     });
                     this.element.addEventListener('keyup', function (e) {
                         _this.keysPressed[e.keyCode] = false;
                     });
                 }
                 Keyboard.prototype.pressed = function (key) {
-                    return this.keysPressed[key];
+                    return this.keysPressed[this.keys[key]];
+                };
+                Keyboard.prototype.nonePressed = function () {
+                    var retorno = true;
+                    this.keysPressed.forEach(function (val, key) {
+                        if (val) {
+                            retorno = false;
+                        }
+                    });
+                    return retorno;
                 };
                 return Keyboard;
             }());
             exports_1("Keyboard", Keyboard);
-            keys = {
-                "KEY_SHIFT": 16,
-                "KEY_ENTER": 13,
-                "KEY_LEFT": 37,
-                "KEY_UP": 38,
-                "KEY_RIGHT": 39,
-                "KEY_DOWN": 40,
-            };
-            exports_1("keys", keys);
             keyCodes = {
                 3: "break",
                 8: "backspace / delete",
